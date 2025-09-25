@@ -20,7 +20,7 @@ public class Application {
 
 	@GetMapping("/konichiwa")
 	public String konichiwa() {
-		return "こんにちは!";
+		return "こんにちは!今日はいい天気ですね";
 	}
 
 }
