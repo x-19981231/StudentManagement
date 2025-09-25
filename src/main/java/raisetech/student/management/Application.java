@@ -18,4 +18,9 @@ public class Application {
 		return "Hello World!";
 	}
 
+	@GetMapping("/konichiwa")
+	public String konichiwa() {
+		return "こんにちは!";
+	}
+
 }
