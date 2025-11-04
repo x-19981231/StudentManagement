@@ -1,47 +1,53 @@
 package raisetech.student.management;
 
+import java.util.HashMap;
+import java.util.Map;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @RestController
 public class Application {
 
-	private String name = "Enami Kouji";
-	private String age = "37";
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
 
-	@GetMapping("/hello")
-	public String hello() {
-		return "Hello World!";
+	// 名前と年齢を保存するMap
+	private Map<String, Integer> students = new HashMap<>();
+
+	// 全データを取得（GET）
+	@GetMapping
+	public Map<String, Integer> getStudents() {
+		return students;
 	}
 
-	@GetMapping("/konichiwa")
-	public String konichiwa() {
-		return "こんにちは!今日はいい天気ですね";
+	// 1件追加（POST）
+	@PostMapping
+	public String addStudent(@RequestParam String name, @RequestParam int age) {
+		students.put(name, age);
+		return name + " (" + age + "歳) を追加しました。";
 	}
 
-	@GetMapping("/studentInfo")
-	public String getstudentInfo(){
-		return name + "" + age + "歳";
-	}
-	@GetMapping("/age")
-	public String getAge(){
-		return age;
-	}
-	@PostMapping("/studentInfo")
-	public void setstudentInfo(String name,String age){
-		this.name = name;
-		this.age = age;
-	}
-	@PostMapping("studentName")
-public void updateStudentName(String name){
-		this.name = name;
-	}
+	// データ更新（PUT）
+	@PutMapping
+	public String updateStudent(@RequestParam String name, @RequestParam int age) {
+		if (students.containsKey(name)) {
+			students.put(name, age);
+			return name + " の年齢を " + age + " に更新しました。";
+		} else {
+			return name + " は存在しません。";
+		}
+
+
 }
+}
+
+
