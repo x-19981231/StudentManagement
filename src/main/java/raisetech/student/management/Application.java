@@ -14,24 +14,23 @@ import org.springframework.web.bind.annotation.RestController;
 public class Application {
 
   @Autowired
-  private StudentRepository repository;
+private StudentRepository studentRepository;
 
-
+  @Autowired
+  private StudentCourseRepository studentCourseRepository;
 
   public static void main(String[] args) {
     SpringApplication.run(Application.class, args);
   }
 
-
   @GetMapping("/studentList")
   public List<Student> getStudentList() {
-  return repository.search();
+    return studentRepository.search();
+  }
 
+  @GetMapping("/studentCourseList")
+  public List<StudentCourse> getStudentCourseList() {
+    return studentCourseRepository.findAll();
   }
 }
-
-
-
-
-
 
