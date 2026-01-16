@@ -11,10 +11,10 @@ Student {
 
   private String id;
   private String name;
-  private String furigana;
+  private String kanaName;
   private String nickName;
   private String email;
-  private String city;
+  private String area;
   private int age;
   private String gender;
   private String remark;
