@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
   <meta charset="UTF-8">
   <title>受講生一覧</title>
@@ -29,7 +29,12 @@
     <td th:text="${studentDetail.student.email}">yamada@example.com</td>
     <td th:text="${studentDetail.student.area}">東京都</td>
     <td th:text="${studentDetail.student.age}">25</td>
-    <td th:text="${studentDetail.student.gender}">男性</td>
+    <td th:switch="${studentDetail.student.gender}">
+      <span th:case="'男性'">男性</span>
+      <span th:case="'女性'">女性</span>
+      <span th:case="'ノンバイナリー'">ノンバイナリー</span>
+      <span th:case="*">未設定</span>
+    </td>
     <td th:text="${studentDetail.student.remark}">特になし<tr>
   </tr>
   </tbody>
