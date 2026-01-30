@@ -28,6 +28,18 @@ public class StudentService {
     return repository.searchStudentsCourses();
   }
 
+  public void registerStudent(Student student) {
+    student.setName(
+        student.getName().replace("　", " ")
+    );
+
+    if (student.getRemark() != null && student.getRemark().isBlank()) {
+      student.setRemark(null);
+    }
+
+    repository.insertStudent(student);
+  }
+
 }
 
 
