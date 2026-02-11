@@ -68,7 +68,6 @@ public class StudentController {
     if (result.hasErrors()){
       return  "updateStudent";
     }
-
     service.updateStudent(studentDetail);
     return "redirect:/studentList";
   }
