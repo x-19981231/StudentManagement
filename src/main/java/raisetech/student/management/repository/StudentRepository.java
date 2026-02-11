@@ -13,7 +13,7 @@ import raisetech.student.management.data.StudentCourse;
 public interface StudentRepository {
 
 
-  @Select("SELECT * FROM students")
+  @Select("SELECT * FROM students WHERE is_deleted = false")
   List<Student> search();
 
   @Select("SELECT * FROM students WHERE id = #{id}")
